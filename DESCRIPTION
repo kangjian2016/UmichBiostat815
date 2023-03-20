@@ -1,0 +1,15 @@
+Package: UmichBiostat815
+Type: Package
+Title: Statistical computation algorithms taught in Biostatistics 815 at the University of Michgian
+Version: 1.0
+Date: 2023-02-03
+Author: Jian Kang
+Maintainer: Jian Kang <jiankang@umich.edu>
+Description: This package implements the statistical computation algorithms taught in Biostatistics 815 including gradient descent algorithms, stochastic gradient descent algorithms penalized regression for linear models and logitistic regression.
+License: GPL (>= 2)
+Encoding: UTF-8
+Imports: Rcpp (>= 1.0.10)
+Includes: Rcpp
+LinkingTo: Rcpp, RcppArmadillo
+Depends: Rcpp (>= 1.0.7), RcppArmadillo
+RoxygenNote: 7.2.3
