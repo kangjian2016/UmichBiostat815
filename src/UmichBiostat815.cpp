@@ -188,26 +188,28 @@ Rcpp::List gradient_descent_cpp(arma::vec paras,
 //'@examples 
 //'regdat <- simul_linear_reg(n = 1000, p = 5, pos_corr = 0.6)
 //'regdat$lambda = 0.001
-//'res <- gradient_descent_cpp(paras=rep(0,length=ncol(regdat$X)),
-//'ridge_reg_loss_cpp,grad_ridge_reg_loss_cpp,regdat)
+//'res <- sgd_cpp(paras=rep(0,length=ncol(regdat$X)),ridge_reg_loss_cpp,
+//'grad_ridge_reg_loss_cpp,regdat,
+//'step_size_method = "decreasing")
+//'
 //'@export
 // [[Rcpp::export]]
 Rcpp::List sgd_cpp(arma::vec paras, 
                    Rcpp::Function obj_fun, 
                    Rcpp::Function grad_fun, 
                    Rcpp::List& dat,
-                   Rcpp::CharacterVector step_size_method = Rcpp::CharacterVector::create("fixed","dicreasing","BB"),
+                   Rcpp::CharacterVector step_size_method = Rcpp::CharacterVector::create("decreasing","BB","fixed"),
                    int n = -1,
                    int max_iter = 10000L,
                    int mini_batch_size = 1L,
                    int update_freq = 100L,
                    double weight = 1.0,
-                   double step_size = 1e-4,
-                   double diminishing_ratio = 0.01,
+                   double step_size = 1e-3,
+                   double diminishing_ratio = 0.1,
                    double r = 0.55,
                    double tol = 1e-4,
                    int burnin = 5000L,
-                   int verbose = 100L)
+                   int verbose = 1000L)
 {
   arma::wall_clock timer;
   timer.tic();

@@ -9,7 +9,7 @@ sgd_cpp(
   obj_fun,
   grad_fun,
   dat,
-  step_size_method = as.character(c("fixed", "dicreasing", "BB")),
+  step_size_method = as.character(c("fixed", "decreasing", "BB")),
   n = -1L,
   max_iter = 10000L,
   mini_batch_size = 1L,
@@ -20,7 +20,7 @@ sgd_cpp(
   r = 0.55,
   tol = 1e-04,
   burnin = 5000L,
-  verbose = 100L
+  verbose = 1000L
 )
 }
 \arguments{
@@ -56,8 +56,10 @@ Stochastic Gradient descent algorithm with different step size methods
 \examples{
 regdat <- simul_linear_reg(n = 1000, p = 5, pos_corr = 0.6)
 regdat$lambda = 0.001
-res <- gradient_descent_cpp(paras=rep(0,length=ncol(regdat$X)),
-ridge_reg_loss_cpp,grad_ridge_reg_loss_cpp,regdat)
+res <- sgd_cpp(paras=rep(0,length=ncol(regdat$X)),ridge_reg_loss_cpp,
+grad_ridge_reg_loss_cpp,regdat,
+step_size_method = "decreasing")
+
 }
 \author{
 Jian Kang <jiankang@umich.edu>

@@ -93,10 +93,12 @@ gradient_descent_cpp <- function(paras, obj_fun, grad_fun, dat, step_size_method
 #'@examples 
 #'regdat <- simul_linear_reg(n = 1000, p = 5, pos_corr = 0.6)
 #'regdat$lambda = 0.001
-#'res <- gradient_descent_cpp(paras=rep(0,length=ncol(regdat$X)),
-#'ridge_reg_loss_cpp,grad_ridge_reg_loss_cpp,regdat)
+#'res <- sgd_cpp(paras=rep(0,length=ncol(regdat$X)),ridge_reg_loss_cpp,
+#'grad_ridge_reg_loss_cpp,regdat,
+#'step_size_method = "decreasing")
+#'
 #'@export
-sgd_cpp <- function(paras, obj_fun, grad_fun, dat, step_size_method = as.character( c("fixed","dicreasing","BB")), n = -1L, max_iter = 10000L, mini_batch_size = 1L, update_freq = 100L, weight = 1.0, step_size = 1e-4, diminishing_ratio = 0.01, r = 0.55, tol = 1e-4, burnin = 5000L, verbose = 100L) {
+sgd_cpp <- function(paras, obj_fun, grad_fun, dat, step_size_method = as.character( c("fixed","decreasing","BB")), n = -1L, max_iter = 10000L, mini_batch_size = 1L, update_freq = 100L, weight = 1.0, step_size = 1e-4, diminishing_ratio = 0.01, r = 0.55, tol = 1e-4, burnin = 5000L, verbose = 1000L) {
     .Call(`_UmichBiostat815_sgd_cpp`, paras, obj_fun, grad_fun, dat, step_size_method, n, max_iter, mini_batch_size, update_freq, weight, step_size, diminishing_ratio, r, tol, burnin, verbose)
 }
 
