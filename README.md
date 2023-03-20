@@ -1,10 +1,10 @@
 # UmichBiostat815
 
-##Overview
+## Overview
 
 This package implements some statistical methods and algorithms that were taught in Biostatistics 815 at the University of Michgian in Winter 2023
 
-##Install from Github
+## Install from Github
 
 Install package `UmichBiostat815' from Github with 
 
@@ -13,7 +13,7 @@ devtools::install_github("kangjian2016/UmichBiostat815")
 library(UmichBiostat815)
 ```
 
-##Examples: Ridge Regression
+## Examples: Ridge Regression
 
 ```r
 library(glmnet)
